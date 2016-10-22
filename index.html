@@ -1,22 +1,35 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>Using unsupervised learning to create &#39;strategies&#39; within English Premier League soccer by llevin16</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Using unsupervised learning to create &#39;strategies&#39; within English Premier League soccer by llevin16</title>
   </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Using unsupervised learning to create &#39;strategies&#39; within English Premier League soccer</h1>
-      <h2 class="project-tagline">Can data itself show us the styles of play in English soccer?</h2>
-    </section>
 
-    <section class="main-content">
-      <h2>
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Using unsupervised learning to create &#39;strategies&#39; within English Premier League soccer</h1>
+          <h2>Can data itself show us the styles of play in English soccer?</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/llevin16" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h2>
 <a id="background" class="anchor" href="#background" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Background</h2>
 
 <p>I am a lover of soccer. Have been since I started playing goalie between two trees when I was 10 years old. I remember growing up watching A.C. Milan destroy opponents with finesse and skill (Sadly those days are past but I hope for a return someday).</p>
@@ -64,23 +77,23 @@
 
 <p>The graphs below show a sample of the type of things I looked at, whether it was did each stadium have enough games (sorry Cardiff fans, you just weren't in the Premier League long enough), was their enough actual data that could be used (e.g. precipitation had to be removed because surprisingly there wasn't much of it for my games or more likely that data wasn't there from the weather API I used), etc.</p>
 
-<p><img src="../plots/heatmap.png"></p>
+<p><img src="https://github.com/llevin16/llevin16.github.io/blob/master/images/heatmap.png?raw=true" alt=""></p>
 
-<p><img src="../plots/referee_groupings"></p>
+<p><img src="https://github.com/llevin16/llevin16.github.io/blob/master/images/referee_groupings?raw=true" alt=""></p>
 
-<p><img src="../plots/stadium_grouping"></p>
+<p><img src="https://github.com/llevin16/llevin16.github.io/blob/master/images/stadium_grouping?raw=true" alt=""></p>
 
-<p><img src="../plots/wind_speed_dist.png"></p>
+<p><img src="https://github.com/llevin16/llevin16.github.io/blob/master/images/wind_speed_dist.png?raw=true" alt=""></p>
 
 <p>EDA is a process which has no end. You can spend forever looking at different angles for the data, grouping things together differently, or creating different visualizations. So I had to stop myself at some point when I was comfortable with the data I had and move on to the modeling piece. </p>
 
 <p>Except for one last thing....PCA.</p>
 
-<p><img src="../plots/pca_explained_variance.png"></p>
+<p><img src="https://github.com/llevin16/llevin16.github.io/blob/master/images/pca_explained_variance.png?raw=true" alt=""></p>
 
 <p>Principal Component Analysis, or PCA, is the process of going from many variables to few without losing the information. The process is essentially a weighting of each variable and combining those weights into new variables. The graph above shows how much of the old variables (shots, possession, etc.) are explained by the new variables. You can see that the first four variables (called PC1 through PC4) explain ~25% of the old variables, using different weightings for each. </p>
 
-<p><img src="../plots/pc1_head.png"></p>
+<p><img src="https://github.com/llevin16/llevin16.github.io/blob/master/images/pc1_head.png?raw=true" alt=""></p>
 
 <p>The above is just a sample of how the old variables are weighted to create PC1. This process is great when you have a large number of variables for each data point (as I do) and want to make it easier for the modeling process. Models will have a much better time grouping four variables than 100. </p>
 
@@ -102,7 +115,7 @@
 
 <p>So how did DBSCAN do? </p>
 
-<p><img src="../plots/dbscan.png"></p>
+<p><img src="https://github.com/llevin16/llevin16.github.io/blob/master/images/dbscan.png?raw=true" alt=""></p>
 
 <p>Well...as you can see from the above...not well. Even after adjusting the parameters, DBSCAN continually either grouped almost all the games into one 'strategy' or none at all, labeling each point its own strategy (which makes zero sense). For some reason DBSCAN just couldn't pick out any patterns within the data. </p>
 
@@ -110,7 +123,7 @@
 
 <p>For that we can take a look at the dendrogram I mentioned previously.</p>
 
-<p><img src="../plots/final_dendrogram.png"></p>
+<p><img src="https://github.com/llevin16/llevin16.github.io/blob/master/images/final_dendrogram.png?raw=true" alt=""></p>
 
 <p>Is this good? Bad? With hierarchical clustering it's not that straightforward. You can see above this tree that keeps splitting into more and more branches. The splits at each level are the many options for the groupings. We have to take a look at these different options to see what makes sense. </p>
 
@@ -118,7 +131,7 @@
 
 <p>So what are these three groups I discovered?</p>
 
-<p><img src="../plots/final_cluster.png"></p>
+<p><img src="https://github.com/llevin16/llevin16.github.io/blob/master/images/final_cluster.png?raw=true" alt=""></p>
 
 <p>Easy! Makes sense right? ;-) Yeah that's because I did that whole PCA thing before. So these are actually the values of those four variables which are combination of all our original variables. Confusing yes...but productive. Because now we have distinctive groups. </p>
 
@@ -132,7 +145,7 @@
 
 <p>Are these completely different? No. There is obviously a lot of overlap in values, especially when our principal components only cover 25% of the original data. But does it make sense? Yes. Do these groups cover the data well? Below is a 3-D (whooooah) visualization of all the games and the first three principal component values as the axes (I wanted all four but not sure yet how to do a 4-D visualization).</p>
 
-<p><img src="../plots/cluster_3d_scatter(2).png"></p>
+<p><img src="https://github.com/llevin16/llevin16.github.io/blob/master/images/cluster_3d_scatter(2).png?raw=true" alt=""></p>
 
 <p>Not bad right? It seems that these groups do in some sense separate the games well into three distinctive groups. We did it!</p>
 
@@ -155,19 +168,19 @@
 
 <p>I want to tackle all of these and will be updating regularly as I find new interesting things and maybe not so interesting things. Thank you all for reading and feel free to ask any questions or comment on my git repo!</p>
 
-<p><img src="../plots/french.jpg"></p>
+<p><img src="https://github.com/llevin16/llevin16.github.io/blob/master/images/brazilian.png?raw=true" alt=""></p>
 
-<p>!(<a href="https://github.com/llevin16/llevin16.github.io/blob/master/images/brazilian.jpg?raw=true">https://github.com/llevin16/llevin16.github.io/blob/master/images/brazilian.jpg?raw=true</a>)</p>
+<p><img src="https://github.com/llevin16/llevin16.github.io/blob/master/images/french.png?raw=true" alt=""></p>
 
-<p><img src="../plots/english.jpg"></p>
+<p><img src="https://github.com/llevin16/llevin16.github.io/blob/master/images/english.png?raw=true" alt=""></p>
+        </section>
 
-      <footer class="site-footer">
+        <footer>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
+        
+      </div>
+    </div>
   </body>
 </html>
